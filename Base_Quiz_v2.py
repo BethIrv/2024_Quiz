@@ -121,12 +121,12 @@ question_incorrect = 0
 feedback = ""
 quiz_history = []
 history = []
-bf_list = ["addition", "subtraction", "multiplication", "division", "mix"]
+operation_list = ["addition", "subtraction", "multiplication", "division", "mix"]
 
 # ask user what type of operations they would like
 # includes the option to have mixed operations
-basic_facts_type = string_checker("What type of operation would you like? "
-                                  "(Addition, Subtraction, Multiplication, Division, Mix) ", bf_list)
+operation_type = string_checker("What type of operation would you like? "
+                                "(Addition, Subtraction, Multiplication, Division, Mix) ", operation_list)
 
 # ask user what difficulty level they would like
 difficulty_level = int_check("What level difficulty would you like your questions to be? (Choose between levels 1-3): ",
@@ -157,13 +157,13 @@ while question_number < number_questions:
     num_4 = num_1 + num_2
     random_bf_list = ["addition questions", "subtraction questions", "multiplication questions", "division questions"]
     # generates the question type
-    if basic_facts_type == "addition":
+    if operation_type == "addition":
         question = "addition questions"
-    elif basic_facts_type == "subtraction":
+    elif operation_type == "subtraction":
         question = "subtraction questions"
-    elif basic_facts_type == "multiplication":
+    elif operation_type == "multiplication":
         question = "multiplication questions"
-    elif basic_facts_type == "division":
+    elif operation_type == "division":
         question = "division questions"
     else:
         question = random.choice(random_bf_list)
@@ -234,10 +234,12 @@ while question_number < number_questions:
                 history.append(feedback)
             elif user_choice == "xxx":
                 break
-    # print feedback to user
-    print(feedback)
 
-    if end_game == "yes":
+    # print feedback to user
+    if end_game == "no":
+        print(feedback)
+
+    elif end_game == "yes":
         break
 
     # history and feedback
@@ -270,5 +272,3 @@ if question_number > 0:
 
     print()
     print("Thank you for playing my quiz!")
-
-
